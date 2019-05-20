@@ -1,0 +1,14 @@
+{
+  "name": "jma",
+  "version": "1.0.0",
+  "description": "Jazz Theory Application w/ Web MIDI API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Zach Alaniz",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.0"
+  }
+}
