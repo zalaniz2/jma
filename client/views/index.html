@@ -8,7 +8,45 @@
   <body>
 
     <h5>Initial page</h5>
+    <button id="major">Major 7th</button>
+    <button id="minor">Minor 7th</button>
+    <button id="dom">Dominant 7th</button>
 
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/client/js/index.js"></script>
+    <script>
+
+    $("#major").click(function(){
+
+        console.log("Major chords clicked.");
+
+			  $.ajax({
+					 type: 'POST',
+					 data: JSON.stringify({ type: 1 }),
+				   contentType: 'application/json',
+           url: 'http://localhost:3000/chords',
+           success: function(response) {
+
+                console.log(response);
+          },
+          error: function (jqXHR, exception) {
+            console.log("Error with AJAX request.");
+          }
+
+
+        });
+
+  });
+
+    $("#minor").click(function(){
+      console.log("Minor chords clicked.");
+    });
+    $("#dom").click(function(){
+      console.log("Dominant chords clicked.");
+    });
+
+
+    </script>
   </body>
 </html>
