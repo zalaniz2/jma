@@ -109,23 +109,38 @@ router.get('/', function (req, res) { //root (index page)
   res.sendFile(path + "index.html");
 });
 
+
 router.post('/chords', function(req, res){
 
   console.log(req.body); //parsed JSON data
 
-  if( req.body.type == 1 ){
+  app.locals.db.collection("seventh").findOne({}, function(err, response) {
 
-    console.log("Getting major 7th chords from DB.");
+    if (err) throw err;
 
-      app.locals.db.collection("seventh").findOne({}, function(err, response) {
-        if (err) throw err;
+
+    if( req.body.type == 1 ){
+
+        console.log("Getting major 7th chords from DB.");
         console.log(response.major);
         res.send(response.major);
-      });
 
-    };
+    }
+
+    else if( req.body.type == 2){
+      console.log("Getting Dominant 7th chords from DB.");
+      console.log(response.dominant);
+      res.send(response.dominant);
+    }
+    else{
+      console.log("Getting Minor 7th chords from DB.");
+      console.log(response.minor);
+      res.send(response.minor);
+    }
 
   });
+
+});
 
 
 //==================================================================================================
