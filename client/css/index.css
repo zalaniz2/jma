@@ -13,6 +13,9 @@ body {
   font-weight: bold;
   /*color: white;*/
 }
+.side-bold{
+  font-weight: bold;
+}
 #connect{
   margin-top: 15px;
 }

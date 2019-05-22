@@ -14,12 +14,11 @@
       <div class="bg-light border-right" id="sidebar-wrapper">
         <div class="sidebar-heading">JMA</div>
         <div class="list-group list-group-flush">
-          <a href="#" class="list-group-item list-group-item-action bg-light">Dashboard</a>
-          <a href="#" class="list-group-item list-group-item-action bg-light">Shortcuts</a>
-          <a href="#" class="list-group-item list-group-item-action bg-light">Overview</a>
-          <a href="#" class="list-group-item list-group-item-action bg-light">Events</a>
-          <a href="#" class="list-group-item list-group-item-action bg-light">Profile</a>
-          <a href="#" class="list-group-item list-group-item-action bg-light">Status</a>
+          <a href="#" class="list-group-item list-group-item-action bg-light side-bold" id="home">Homepage</a>
+          <a href="#" class="list-group-item list-group-item-action bg-light" id="ex1">Chords: Major 7th</a>
+          <a href="#" class="list-group-item list-group-item-action bg-light" id="ex2">Chords:Dominant 7th</a>
+          <a href="#" class="list-group-item list-group-item-action bg-light" id="ex3">Chords: Minor 7th</a>
+          <a href="#" class="list-group-item list-group-item-action bg-light" id="ex4">Chords: Maj/Min/Dom</a>
         </div>
       </div>
       <!-- /#sidebar-wrapper -->
@@ -30,24 +29,28 @@
       <!--  <button class="btn btn-primary" id="menu-toggle">Toggle Menu</button> -->
 
         <div class="container-fluid">
-          <div class="alert alert-secondary fade" role="alert" id="connectAlert">
-            <strong>Success!</strong> You just showed an alert.
-          </div>
-          <h1 class="mt-4 text-center" id="head">Jazz MIDI Application</h1>
-          <div class="highlight">
-            <p>JMA is a learning application centered around Jazz theory. Using your <code>MIDI keyboard</code>, you can go through any exercise as much as you need to learn and reinforce the essentials.
-                Each exercise tracks <strong>accuracy</strong> and <strong>speed</strong> to provide feedback, and the list of current exercises include:</p>
-                <div class="text-center">
-                <p><var> - Chords (Major/Minor/Dominant 7th, triads)</var></p>
-                <p><var> - Scales (Major scales, Blues scales)</var></p>
-                <p><var> - Custom chord section</var></p>
-              </div>
-            <p>To begin, plug in your <code>MIDI device</code> and click the button below to make sure you will be able to connect. Once you've tested your connection, you are free to start any exercise.</p>
-          </div>
-          <div class="text-center">
-            <button type="button" class="btn btn-outline-success" id="connect">Connect</button>
-          </div>
+
+          <div id="home-wrapper">
+            <div class="alert alert-secondary fade" role="alert" id="connectAlert">
+              <strong>Success!</strong> You just showed an alert.
+            </div>
+            <h1 class="mt-4 text-center" id="head">Jazz MIDI Application</h1>
+            <div class="highlight">
+              <p>JMA is a learning application centered around Jazz theory. Using your <code>MIDI keyboard</code>, you can go through any exercise as much as you need to learn and reinforce the essentials.
+                  Each exercise tracks <strong>accuracy</strong> and <strong>speed</strong> to provide feedback, and the list of current exercises include:</p>
+                  <div class="text-center">
+                  <p><var> - Chords (Major/Minor/Dominant 7th, triads)</var></p>
+                  <p><var> - Scales (Major scales, Blues scales)</var></p>
+                  <p><var> - Custom chord section</var></p>
+                </div>
+              <p>To begin, plug in your <code>MIDI device</code> and click the button below to make sure you will be able to connect. Once you've tested your connection, you are free to start any exercise.</p>
+            </div>
+            <div class="text-center">
+              <button type="button" class="btn btn-outline-success" id="connect">Connect</button>
+            </div>
         </div>
+
+      </div>
 
       </div>
       <!-- /#page-content-wrapper -->
@@ -72,6 +75,13 @@
     $("#connect").click(function(e){
       console.log("Attempting to connect.");
       testConnection();
+    });
+
+    $('.list-group a').click(function(e) {
+
+        $(".list-group a").removeClass("side-bold");
+        $("#" + e.target.id).addClass("side-bold");
+
     });
 
     $("#major").click(function(){
@@ -138,6 +148,8 @@
       });
 
     });
+
+
 
 
     </script>
