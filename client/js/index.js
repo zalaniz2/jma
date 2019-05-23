@@ -1,39 +1,55 @@
 
-function testConnection(){
 
-  if (navigator.requestMIDIAccess) {
-    console.log('This browser supports WebMIDI.');
-    navigator.requestMIDIAccess().then(onMIDISuccess, onMIDIFailure);
+$("#menu-toggle").click(function(e) {
+  e.preventDefault();
+  $("#wrapper").toggleClass("toggled");
+});
+
+$("#connect").click(function(e){
+  console.log("Attempting to connect.");
+  testConnection();
+});
+
+
+$('.list-group a').click(function(e) {
+
+    var id = e.target.id;
+
+    $(".list-group a").removeClass("side-bold");
+    $("#" + id).addClass("side-bold");
+
+    if( id == "home"){
+      return; //no need for new call;
+    }
+    else{
+
+      $.ajax({
+         type: 'POST',
+         data: JSON.stringify({ type: id }),
+         contentType: 'application/json',
+         url: 'http://localhost:3000/chords',
+         success: function(response) {
+           console.log(response);
+           beginChordPractice(response, id);
+        },
+        error: function (jqXHR, exception) {
+          console.log("Error with AJAX request.");
+        }
+
+      });
+
+    }
+
+});
+
+function whichExercise(id){
+  if( id == "ex1"){
+    return "Major 7th Chords";
   }
-  else {
-    console.log('WebMIDI is not supported in this browser.');
-    $("#connectAlert").html('<strong>Problem:</strong> This browser does not support this application, please use Chrome/Opera.');
-    showAlert();
-
+  else if( id == "ex2"){
+    return "Dominant 7th Chords";
   }
-
-}
-
-function onMIDISuccess() {
-
-    console.log("Access to MIDI I/O successful.");
-    $("#connectAlert").html('Access to MIDI was <strong>successful!</strong>');
-    showAlert();
-
-}
-
-function onMIDIFailure() {
-    console.log('Could not access your MIDI devices.');
-    $("#connectAlert").html("<strong>Problem:</strong> Could not access your computer" + "'s " +  "MIDI devices.");
-    showAlert();
-
-}
-
-function showAlert(){
-
-  $("#connectAlert").addClass('show');
-  setTimeout(function(){
-    $("#connectAlert").removeClass('show');
-  }, 5000);
-
+  else if(id == "ex3"){
+    return "Minor 7th Chords";
+  }
 }

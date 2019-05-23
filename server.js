@@ -119,7 +119,7 @@ router.post('/chords', function(req, res){
     if (err) throw err;
 
 
-    if( req.body.type == 1 ){
+    if( req.body.type == "ex1" ){
 
         console.log("Getting major 7th chords from DB.");
         console.log(response.major);
@@ -127,7 +127,7 @@ router.post('/chords', function(req, res){
 
     }
 
-    else if( req.body.type == 2){
+    else if( req.body.type == "ex2"){
       console.log("Getting Dominant 7th chords from DB.");
       console.log(response.dominant);
       res.send(response.dominant);

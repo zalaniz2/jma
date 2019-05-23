@@ -18,7 +18,6 @@
           <a href="#" class="list-group-item list-group-item-action bg-light" id="ex1">Chords: Major 7th</a>
           <a href="#" class="list-group-item list-group-item-action bg-light" id="ex2">Chords:Dominant 7th</a>
           <a href="#" class="list-group-item list-group-item-action bg-light" id="ex3">Chords: Minor 7th</a>
-          <a href="#" class="list-group-item list-group-item-action bg-light" id="ex4">Chords: Maj/Min/Dom</a>
         </div>
       </div>
       <!-- /#sidebar-wrapper -->
@@ -38,12 +37,12 @@
             <div class="highlight">
               <p>JMA is a learning application centered around Jazz theory. Using your <code>MIDI keyboard</code>, you can go through any exercise as much as you need to learn and reinforce the essentials.
                   Each exercise tracks <strong>accuracy</strong> and <strong>speed</strong> to provide feedback, and the list of current exercises include:</p>
-                  <div class="text-center">
+              <div class="text-center">
                   <p><var> - Chords (Major/Minor/Dominant 7th, triads)</var></p>
                   <p><var> - Scales (Major scales, Blues scales)</var></p>
                   <p><var> - Custom chord section</var></p>
-                </div>
-              <p>To begin, plug in your <code>MIDI device</code> and click the button below to make sure you will be able to connect. Once you've tested your connection, you are free to start any exercise.</p>
+              </div>
+              <p>To begin, check your <code>MIDI device</code> by clicking the button below. Once you've tested your ability to connect, you are free to start any exercise.</p>
             </div>
             <div class="text-center">
               <button type="button" class="btn btn-outline-success" id="connect">Connect</button>
@@ -64,94 +63,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/client/js/index.js"></script>
-    <script>
+    <script type="text/javascript" src="/client/js/connect.js"></script>
+    <script type="text/javascript" src="/client/js/chords.js"></script>
 
-
-    $("#menu-toggle").click(function(e) {
-      e.preventDefault();
-      $("#wrapper").toggleClass("toggled");
-    });
-
-    $("#connect").click(function(e){
-      console.log("Attempting to connect.");
-      testConnection();
-    });
-
-    $('.list-group a').click(function(e) {
-
-        $(".list-group a").removeClass("side-bold");
-        $("#" + e.target.id).addClass("side-bold");
-
-    });
-
-    $("#major").click(function(){
-
-        console.log("Major chords clicked.");
-
-			  $.ajax({
-					 type: 'POST',
-					 data: JSON.stringify({ type: 1 }),
-				   contentType: 'application/json',
-           url: 'http://localhost:3000/chords',
-           success: function(response) {
-
-                console.log(response);
-          },
-          error: function (jqXHR, exception) {
-            console.log("Error with AJAX request.");
-          }
-
-
-        });
-
-  });
-
-    $("#minor").click(function(){
-
-      console.log("Minor chords clicked.");
-
-      $.ajax({
-         type: 'POST',
-         data: JSON.stringify({ type: 3 }),
-         contentType: 'application/json',
-         url: 'http://localhost:3000/chords',
-         success: function(response) {
-
-              console.log(response);
-        },
-        error: function (jqXHR, exception) {
-          console.log("Error with AJAX request.");
-        }
-
-
-      });
-
-
-    });
-    $("#dom").click(function(){
-
-      console.log("Dominant chords clicked.");
-
-      $.ajax({
-         type: 'POST',
-         data: JSON.stringify({ type: 2 }),
-         contentType: 'application/json',
-         url: 'http://localhost:3000/chords',
-         success: function(response) {
-
-              console.log(response);
-        },
-        error: function (jqXHR, exception) {
-          console.log("Error with AJAX request.");
-        }
-
-      });
-
-    });
-
-
-
-
-    </script>
   </body>
 </html>
