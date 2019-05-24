@@ -1,4 +1,4 @@
-
+var tone;
 
 $("#menu-toggle").click(function(e) {
   e.preventDefault();
@@ -6,9 +6,34 @@ $("#menu-toggle").click(function(e) {
 });
 
 $("#connect").click(function(e){
+
   console.log("Attempting to connect.");
   testConnection();
+
+  $.ajax({
+     type: 'POST',
+     data: JSON.stringify({ type: "tones" }),
+     contentType: 'application/json',
+     url: 'http://localhost:3000/tones',
+     success: function(response) {
+       createTones(response);
+    },
+    error: function (jqXHR, exception) {
+      console.log("Error with AJAX request.");
+    }
+
+  });
+
 });
+
+
+function createTones(response){
+
+  tone = Array.from(response);
+  console.log("Tones are..");
+  console.log(tone);
+
+}
 
 
 $('.list-group a').click(function(e) {

@@ -76,34 +76,38 @@ function noteOn(note){
 
             if( activeChord.length == 4){
 
+              var cur = Array.from(testChord[0].formula);
+              console.log(cur);
+
               for( var i = 0; i<4; i++){
 
-                var correct = true;
-
-                if( testChord[spot].formula.indexOf(activeChord[i]) < 0 ){
-                  correct = false;
-                  break;
+                var t = findWhichTone(activeChord[i]);
+                var inx = cur.indexOf(t);
+                if( inx !== -1){
+                  console.log("note is in formula");
+                  cur.splice(inx, 1);
+                  console.log(cur);
                 }
 
               }
 
-              if( correct ){
-
+              if( cur.length == 0){
                 testChord.shift();
                 console.log(testChord);
                 if( testChord.length == 0){
                   step++;
                   console.log("You finished, clicked any key to restart.");
                   console.log("Total wrong = " + wrong);
+
                 }
               }
               else{
-                  wrong++;
+                wrong++;
               }
-
               activeChord = [];
 
-              }
+            }
+
             break;
       case 2: console.log("Restarting..");
               testChord = Array.from(correctChord);
@@ -111,8 +115,6 @@ function noteOn(note){
               activeChord = [];
               wrong = 0;
               break;
-
-
   }
 
 }
@@ -140,4 +142,17 @@ function runChordExercise(update){
 
 function noteOffCallback(note){
   //one hand up, dont need to worry.
+}
+
+function findWhichTone(key){
+
+
+  for( var i = 0; i<tone.length; i++){
+
+        if( tone[i].tones.indexOf(key) !== -1){
+          console.log("The key pressed is " + tone[i].name);
+          return tone[i].name;
+        }
+  }
+
 }
