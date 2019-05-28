@@ -39,14 +39,23 @@ function createTones(response){
 $('.list-group a').click(function(e) {
 
     var id = e.target.id;
+    var header = $("#" + id).html();
+    console.log(header);
 
     $(".list-group a").removeClass("side-bold");
     $("#" + id).addClass("side-bold");
 
     if( id == "home"){
+      $("#home-wrapper").removeClass("d-none");
+      $("#exercise-wrapper").addClass("d-none");
       return; //no need for new call;
     }
     else{
+
+      $("#title-exercise").html(header);
+      $("#home-wrapper").addClass("d-none");
+      $("#exercise-wrapper").removeClass("d-none");
+
 
       $.ajax({
          type: 'POST',
@@ -55,7 +64,7 @@ $('.list-group a').click(function(e) {
          url: 'http://localhost:3000/chords',
          success: function(response) {
            console.log(response);
-           beginChordPractice(response, id);
+           beginExercise(response, id, 4);
         },
         error: function (jqXHR, exception) {
           console.log("Error with AJAX request.");

@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Index</title>
+    <title>JMA</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="/client/css/index.css">
   </head>
@@ -16,7 +16,7 @@
         <div class="list-group list-group-flush">
           <a href="#" class="list-group-item list-group-item-action bg-light side-bold" id="home">Homepage</a>
           <a href="#" class="list-group-item list-group-item-action bg-light" id="ex1">Chords: Major 7th</a>
-          <a href="#" class="list-group-item list-group-item-action bg-light" id="ex2">Chords:Dominant 7th</a>
+          <a href="#" class="list-group-item list-group-item-action bg-light" id="ex2">Chords: Dominant 7th</a>
           <a href="#" class="list-group-item list-group-item-action bg-light" id="ex3">Chords: Minor 7th</a>
         </div>
       </div>
@@ -29,24 +29,46 @@
 
         <div class="container-fluid">
 
+          <div class="alert alert-secondary fade" role="alert" id="connectAlert">
+            <strong>Success!</strong> You just showed an alert.
+          </div>
+
           <div id="home-wrapper">
-            <div class="alert alert-secondary fade" role="alert" id="connectAlert">
-              <strong>Success!</strong> You just showed an alert.
-            </div>
             <h1 class="mt-4 text-center" id="head">Jazz MIDI Application</h1>
             <div class="highlight">
               <p>JMA is a learning application centered around Jazz theory. Using your <code>MIDI keyboard</code>, you can go through any exercise as much as you need to learn and reinforce the essentials.
                   Each exercise tracks <strong>accuracy</strong> and <strong>speed</strong> to provide feedback, and the list of current exercises include:</p>
-              <div class="text-center">
+
+            <!--  <div class="text-center">
                   <p><var> - Chords (Major/Minor/Dominant 7th, triads)</var></p>
                   <p><var> - Scales (Major scales, Blues scales)</var></p>
                   <p><var> - Custom chord section</var></p>
               </div>
+            -->
               <p>To begin, check your <code>MIDI device</code> by clicking the button below. Once you've tested your ability to connect, you are free to start any exercise.</p>
             </div>
             <div class="text-center">
               <button type="button" class="btn btn-outline-success" id="connect">Connect</button>
             </div>
+        </div>
+
+        <div id="exercise-wrapper" class="d-none">
+          <h3 id="title-exercise" class="mt-4 text-center">Excercise: Something</h3>
+          <div class="highlight" id="exercise-txt">
+            <p>Move through the major keys beginning at C, and move down in fourths until you have done every key. You are free to play at <strong>any octave</strong>. There will be a display to show you which scale you are on, and how many you have left to do.
+              Anytime you have a wrong answer, the notes you are missing will be shown underneath to help. At the end, your time to finish and accuracy will be displayed. To start the excercise, press <strong>any key</strong> on your <code>MIDI</code>!</p>
+          </div>
+          <div id="done-wrapper">
+          <div id="timer" class="text-center d-none">
+            <h3><label id="minutes">00</label>:<label id="seconds">00</label></h3>
+          </div>
+          <div id="show-scale" class="col-3 shadow-sm">
+            <p id="scale">C7</p>
+          </div>
+          <code><p id="missing-keys" class="text-center"><p></code>
+          <h3 class="text-center d-none" id="wrong-attempts"></h3>
+        </div>
+        <code id="info-after" class="d-none text-center">Press any key to begin this exercise again.</p>
         </div>
 
       </div>
@@ -64,7 +86,8 @@
     <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/client/js/index.js"></script>
     <script type="text/javascript" src="/client/js/connect.js"></script>
-    <script type="text/javascript" src="/client/js/chords.js"></script>
+    <script type="text/javascript" src="/client/js/timer.js"></script>
+    <script type="text/javascript" src="/client/js/exercise.js"></script>
 
   </body>
 </html>

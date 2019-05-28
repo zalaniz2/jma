@@ -8,6 +8,29 @@ body {
 #head{
   margin-bottom: 20px;
 }
+#title-exercise{
+  margin-bottom: 20px;
+}
+#show-scale{
+    background: #ffe082;
+    padding: 5%;
+    border-radius: 15px;
+    margin: 20px 0;
+    text-align: center;
+    overflow: hidden;
+    transition: 150ms ease;
+    float: none;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+#timer{
+  margin-top: 10px;
+
+}
+#scale{
+  font-weight: bold;
+}
+
 .sidebar-heading{
   /*background-color: #01579b;*/
   font-weight: bold;
@@ -59,4 +82,44 @@ body {
   #wrapper.toggled #sidebar-wrapper {
     margin-left: -15rem;
   }
+
+}
+
+.err{
+    background: #f44336 !important;
+    animation: shake 300ms;
+}
+.corr{
+  background: #4caf50 !important;
+  animation: success;
+}
+
+@keyframes success {
+    0% {
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    30% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes shake {
+    0% {
+        transform: translateX(0px);
+    }
+    25% {
+        transform: translateX(-5px);
+    }
+    75% {
+        transform: translateX(5px);
+    }
+    100% {
+        transform: translateX(0px);
+    }
 }
