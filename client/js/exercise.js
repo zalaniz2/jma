@@ -14,6 +14,9 @@ function beginExercise(set, id, size){
   $("#info-after").addClass("d-none");
   $("#done-wrapper").removeClass("highlight");
   $("#show-scale").removeClass("d-none");
+  $("#exercise-txt").removeClass("d-none");
+  $("#timer").addClass("d-none");
+  $("#active-notes").addClass("d-none");
 
   console.log("Beggining " + whichExercise(id) + " exercise.");
   console.log("Set is...");
@@ -84,6 +87,7 @@ function noteOn(note){
 
     case 1: activeSet.push(note);
             console.log(activeSet);
+            $("#active-notes").html("Active Notes: " + activeSet.length);
 
             if( activeSet.length == testSize){
 
@@ -105,6 +109,7 @@ function noteOn(note){
               if( cur.length == 0){
                 $("#show-scale").addClass("corr");
                 $("#missing-keys").html("");
+                $("#active-notes").html("Active Notes: 0");
                 testSet.shift();
                 console.log(testSet);
                 if( testSet.length == 0){
@@ -113,12 +118,13 @@ function noteOn(note){
                   finishExercise();
                 }
                 else{
-                  setTimeout( function(){  $("#show-scale").removeClass("corr"); $("#scale").html(testSet[0].name); }, 300)
+                  setTimeout( function(){  $("#show-scale").removeClass("corr"); $("#scale").html(testSet[0].name[0]); }, 300)
                 }
               }
               else{
                 wrong++;
                 $("#show-scale").addClass("err");
+                $("#active-notes").html("Active Notes: 0");
                 var missing = "Missing Notes: ";
                 for( var i = 0; i<cur.length; i++){
                     missing += cur[i] + " ";
@@ -160,6 +166,7 @@ function runExercise(update){
                   $("#exercise-txt").addClass("d-none");
                   $("#timer").removeClass("d-none");
                   $("#show-scale").removeClass("d-none");
+                  $("#active-notes").removeClass("d-none");
                   startTime();
           break;
   }
@@ -175,10 +182,10 @@ function finishExercise(){
   $("#wrong-attempts").html("Wrong Attempts: " + wrong);
   $("#wrong-attempts").removeClass("d-none");
   $("#info-after").removeClass("d-none");
-
   $("#scale").html(testSet[0].name);
   $("#show-scale").addClass("d-none");
   $("#done-wrapper").addClass("highlight");
+  $("#active-notes").addClass("d-none");
   wrong = 0;
 
 }

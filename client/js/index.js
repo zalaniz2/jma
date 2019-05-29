@@ -45,7 +45,7 @@ $('.list-group a').click(function(e) {
     $(".list-group a").removeClass("side-bold");
     $("#" + id).addClass("side-bold");
 
-    if( id == "home"){
+    if( id == "home" || id == "about"){
       $("#home-wrapper").removeClass("d-none");
       $("#exercise-wrapper").addClass("d-none");
       return; //no need for new call;

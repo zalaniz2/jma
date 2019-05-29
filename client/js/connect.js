@@ -19,6 +19,8 @@ function onMIDISuccess() {
     console.log("Access to MIDI I/O successful.");
     $("#connectAlert").html('Access to MIDI was <strong>successful!</strong>');
     showAlert();
+    $("#menu").find('a').removeClass("disabled");
+
 
 }
 
