@@ -45,7 +45,7 @@ $('.list-group a').click(function(e) {
     $(".list-group a").removeClass("side-bold");
     $("#" + id).addClass("side-bold");
 
-    if( id == "home" || id == "about"){
+    if( id == "home"){
       $("#home-wrapper").removeClass("d-none");
       $("#exercise-wrapper").addClass("d-none");
       return; //no need for new call;
@@ -56,21 +56,61 @@ $('.list-group a').click(function(e) {
       $("#home-wrapper").addClass("d-none");
       $("#exercise-wrapper").removeClass("d-none");
 
+      if( id == "ex1" || id == "ex2" || id == "ex3"){
 
-      $.ajax({
-         type: 'POST',
-         data: JSON.stringify({ type: id }),
-         contentType: 'application/json',
-         url: 'http://localhost:3000/chords',
-         success: function(response) {
-           console.log(response);
-           beginExercise(response, id, 4);
-        },
-        error: function (jqXHR, exception) {
-          console.log("Error with AJAX request.");
-        }
+        $.ajax({
+           type: 'POST',
+           data: JSON.stringify({ type: id }),
+           contentType: 'application/json',
+           url: 'http://localhost:3000/chords',
+           success: function(response) {
+             console.log(response);
+             beginExercise(response, id, 4);
+          },
+          error: function (jqXHR, exception) {
+            console.log("Error with AJAX request.");
+          }
 
-      });
+        });
+
+      }
+      else if( id == "ex4" ){
+
+        $.ajax({
+           type: 'POST',
+           data: JSON.stringify({ type: id }),
+           contentType: 'application/json',
+           url: 'http://localhost:3000/scales',
+           success: function(response) {
+             console.log(response);
+             beginExercise(response, id, 6);
+          },
+          error: function (jqXHR, exception) {
+            console.log("Error with AJAX request.");
+          }
+
+        });
+
+      }
+      else if( id == "ex5"){
+
+        $.ajax({
+           type: 'POST',
+           data: JSON.stringify({ type: id }),
+           contentType: 'application/json',
+           url: 'http://localhost:3000/standard',
+           success: function(response) {
+             console.log(response);
+             beginExercise(response, id, 4);
+          },
+          error: function (jqXHR, exception) {
+            console.log("Error with AJAX request.");
+          }
+
+        });
+
+      }
+
 
     }
 
@@ -85,5 +125,11 @@ function whichExercise(id){
   }
   else if(id == "ex3"){
     return "Minor 7th Chords";
+  }
+  else if( id == "ex4"){
+    return "Blues Scales";
+  }
+  else if( id == "ex5"){
+    return "Autumn Leaves progression";
   }
 }
