@@ -8,7 +8,7 @@ time it took to finish and accuracy. Exercise and note information is pulled fro
 can complete each exercises using any octave on the keyboard. Notes are being recieved using Web MIDI API, 
 which allows for input to be recieved through the browser.
 
-Examples of exercises include practicing seventh chords, types of scales (i.e. blues), and chord progressions to
-popular jazz standards.
+<code>Examples of exercises include practicing seventh chords, types of scales (i.e. blues), and chord progressions to
+popular jazz standards.</code>
 
 Built w/ Node.js, MongoDB, Javascript, Web MIDI API.
